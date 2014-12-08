@@ -1,0 +1,29 @@
+---
+- name: Shell | Check oh-my-zsh installation
+  command: test -d ~/.oh-my-zsh
+  ignore_errors: True
+  register: omz_installed
+
+- name: Shell | Download oh-my-zsh
+  git: repo=git://github.com/robbyrussell/oh-my-zsh.git
+       dest=~/.oh-my-zsh
+       accept_hostkey=yes
+  when: omz_installed|failed
+
+- name: Shell | Install oh-my-zsh template
+  copy: src=~/.oh-my-zsh/templates/zshrc.zsh-template
+        dest=~/.zshrc
+  when: omz_installed|failed
+
+- name: Shell | Change shell to oh-my-zsh
+  command: chsh -s /bin/zsh
+  when: omz_installed|failed
+
+- name: Shell | Prepend /usr/local/bin to $PATH
+  lineinfile: dest=~/.zshrc regexp="PATH" line="PATH="/usr/local/bin:$PATH"" state=present
+
+- name: Config | Configure autojump
+  lineinfile: dest=~/.zshrc regexp="/etc/autojump.sh" line="[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh" state=present
+
+# - name: Config | Source zshrc
+#   command: "source ~/.zshrc"

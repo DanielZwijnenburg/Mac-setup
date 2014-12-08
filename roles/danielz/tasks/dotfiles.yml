@@ -1,0 +1,17 @@
+---
+- name: Dotfiles | Copy dotfiles
+  template: src="lib/{{ item }}"
+            dest="~/.{{ item }}"
+  with_items:
+    - agignore
+    - gemrc
+    - gitconfig
+    - gitignore
+    - irbrc
+    - rspec
+    - tmux.conf
+    - vimrc
+    - zprofile
+
+- name: Dotfiles | Configure vim
+  command: vim +PluginInstall +qall

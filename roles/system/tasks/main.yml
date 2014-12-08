@@ -1,0 +1,6 @@
+---
+- include: defaults.yml
+- include: shell.yml
+- include: vim.yml
+- include: databases.yml
+- include: languages.yml

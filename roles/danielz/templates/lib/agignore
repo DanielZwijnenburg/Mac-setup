@@ -1,0 +1,11 @@
+log
+tags
+tmp
+*.min.*
+*.bak/*
+fonts
+images
+*.svg
+*.jpg
+*.png
+*.log

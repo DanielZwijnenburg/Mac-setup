@@ -1,0 +1,25 @@
+---
+- name: Languages | Install Rbenv
+  homebrew: name=rbenv
+
+- name: Languages | Install ruby-build
+  homebrew: name=ruby-build
+
+- name: Languages | Checks for Ruby 2.1.5
+  command: /bin/sh -c "rbenv versions | grep 2.1.5"
+  ignore_errors: yes
+  register: ruby_is_installed
+
+- name: Languages | Install Ruby 2.1.5
+  command: rbenv install 2.1.5
+  when: ruby_is_installed|failed
+
+- name: Languages | Set Ruby 2.1.5 as global
+  command: rbenv global 2.1.5
+
+- name: Languages | Ensure oh-my-zsh presence
+  ignore_errors: True
+  file: path=~/.zshrc state=touch
+
+- name: Languages | Add rbenv shim to zshrc
+  lineinfile: dest=~/.zshrc regexp="rbenv" line="eval \"$(rbenv init -)\"" state=present

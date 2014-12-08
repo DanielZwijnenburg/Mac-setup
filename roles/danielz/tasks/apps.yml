@@ -1,0 +1,18 @@
+---
+- name: Apps | Install Homebrew casks
+  homebrew_cask: name={{ item }} state=installed
+  with_items:
+    - backblaze
+    - flux
+    - gitx
+    - google-drive
+    - imageoptim
+    - licecap
+    - name-mangler
+    - onepassword
+    - panic-unison
+    - plex-home-theater
+    - plex-media-server
+    - spotify
+    - steam
+    - vlc

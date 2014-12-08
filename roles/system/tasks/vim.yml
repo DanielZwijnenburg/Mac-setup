@@ -1,0 +1,30 @@
+---
+- name: Vim | Install Vim
+  homebrew: name=vim
+            state=present
+            install_options=--with-python,--with-ruby,--with-perl,--override-system-vi
+
+- name: Vim | Ensure backup dir
+  file: path=~/.vim/backup 
+        state=directory
+        recurse=true
+
+- name: Vim | Ensure bundle dir
+  file: path=~/.vim/bundle 
+        state=directory
+        recurse=true
+
+- name: Vim | Ensure tmp dir
+  file: path=~/.vim/tmp 
+        state=directory
+        recurse=true
+
+- name: Vim | Ensure undo dir
+  file: path=~/.vim/undo 
+        state=directory
+        recurse=true
+
+- name: Vim | Checkout Vundle dir
+  git: repo=https://github.com/gmarik/vundle.vim.git
+       dest=~/.vim/bundle/Vundle.vim
+

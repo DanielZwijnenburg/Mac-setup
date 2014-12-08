@@ -1,0 +1,118 @@
+---
+- name: Config | Git | Configure name
+  command: git config --global user.name "Daniël"
+
+- name: Config | Git | Configure email
+  command: git config --global user.email "daniel@danielz.nl"
+
+- name: Config | Git | Configure push
+  command: git config --global push.default simple
+
+- name: Config | Git | Configure color
+  command: git config --global color.ui true
+
+- name: Config | Dev | Ensure sites folder
+  file: path=~/Sites
+        state=directory
+        recurse=true
+
+
+
+
+- name: Config | iTerm2 | Remove old plist
+  file: path="~/Library/Preferences/com.googlecode.iterm2.plist"
+        state=absent
+
+- name: Config | iTerm2 | Remove plist cache
+  command: "defaults read com.googlecode.iterm2"
+  ignore_errors: true
+
+- name: Config | iTerm2 | Copy plist
+  copy: src="com.googlecode.iterm2.plist.xml"
+        dest="~/Library/Preferences/com.googlecode.iterm2.plist"
+
+- name: Config | iTerm2 | Conver plist to binary
+  command: "plutil -convert binary1 ~/Library/Preferences/com.googlecode.iterm2.plist"
+
+
+- name: Config | OSX | Disable app quarantine window
+  command: "defaults write com.apple.LaunchServices LSQuarantine -bool false"
+
+- name: Config | OSX | Check everyday for software updates
+  command: "defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1"
+
+- name: Config | OSX | Hot corners - Misson Control
+  command: "defaults write com.apple.dock wvous-tl-corner -int 2"
+
+- name: Config | OSX | Hot corners - Misson Control modifier
+  command: "defaults write com.apple.dock wvous-tl-modifier -int 0"
+
+- name: Config | OSX | Hot corners - Desktop
+  command: "defaults write com.apple.dock wvous-tr-corner -int 4"
+
+- name: Config | OSX | Hot corners - Desktop modifier
+  command: "defaults write com.apple.dock wvous-tr-modifier -int 0"
+
+- name: Config | OSX | Hot corners - Application Windows
+  command: "defaults write com.apple.dock wvous-bl-corner -int 3"
+
+- name: Config | OSX | Hot corners - Application modifier
+  command: "defaults write com.apple.dock wvous-bl-modifier -int 0"
+
+- name: Config | OSX | Hot corners - Application Windows
+  command: "defaults write com.apple.dock wvous-br-corner -int 5"
+
+- name: Config | OSX | Hot corners - Application Windows modifier
+  command: "defaults write com.apple.dock wvous-br-modifier -int 0"
+
+- name: Config | OSX | Keyboard - Disable press and hold
+  command: "defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false"
+
+- name: Config | OSX | Keyboard - Blazingly fast key repeat
+  command: "defaults write NSGlobalDomain KeyRepeat -int 0"
+
+- name: Config | OSX | Trackpad - Normal scrolling. Yes _NORMAL_
+  command: "defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false"
+
+- name: Config | OSX | Keyboard - Zoom with scroll
+  command: "defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true"
+
+- name: Config | OSX | Keyboard - Zoom with control modifier
+  command: "defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144"
+
+- name: Config | OSX | Keyboard - Enable tab in modal windows
+  command: "defaults write NSGlobalDomain AppleKeyboardUIMode -int 3"
+
+- name: Config | OSX | Keyboard - Map caps lock to control
+  command: 'defaults -currentHost write -g "com.apple.keyboard.modifiermapping.{}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>"'
+
+- name: Config | OSX | Trackpad - Right click
+  command: "defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true"
+
+- name: Config | OSX | AppleMail - Normal copy of e-mail addresses
+  command: "defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false"
+
+- name: Config | OSX | Chrome - Install user scripts via github & userscripts
+  command: 'defaults write com.google.Chrome ExtensionInstallSources -array "https://gist.githubusercontent.com/" "http://userscripts.org/*"'
+
+- name: Config | OSX | Finder - Expand save panel
+  command: "defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true"
+
+- name: Config | OSX | Finder - Expand save panel
+  command: "defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true"
+
+- name: Config | OSX | Finder - Expand print panel
+  command: "defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true"
+
+- name: Config | OSX | Finder - Expand print panel
+  command: "defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true"
+
+- name: Config | OSX | Finder - Default finder location
+  command: 'defaults write com.apple.finder NewWindowTarget -string "PfDe"'
+
+- name: Config | OSX | Finder - Default finder location
+  command: 'defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Downloads/"'
+
+- name: Config | OSX | Finder - Search from current folder
+  command: 'defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"'
+

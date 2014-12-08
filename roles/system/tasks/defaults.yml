@@ -1,0 +1,61 @@
+---
+#- name: Install Homebrew
+#  command: ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+
+- name: Defaults | Update Homebrew
+  homebrew: update_homebrew=yes
+
+- name: Defaults | Update Homebrew taps
+  homebrew_tap: name={{ item }} state=present
+  with_items:
+    - homebrew/dupes
+    - homebrew/science
+    - homebrew/versions
+    - nviennot/tmate
+    - phinze/cask
+
+- name: Defaults | Update Homebrew & Taps
+  homebrew: update_homebrew=yes upgrade_all=yes
+
+- name: Defaults | Install Homebrew packages
+  homebrew: name={{ item }} state=upgraded
+  with_items: 
+      - ansible
+      - autojump
+      - automake
+      - brew-cask
+      - cloc
+      - coreutils
+      - ctags
+      - curl
+      - exiftool
+      - findutils
+      - git
+      - git-extras
+      - gnu-tar
+      - gpg
+      - htop-osx
+      - imagemagick
+      - openssl
+      - qt
+      - reattach-to-user-namespace
+      - the_silver_searcher
+      - tig
+      - tmate
+      - tmux
+      - v8
+      - wget
+
+- name: Defaults | Install Homebrew casks
+  homebrew_cask: name={{ item }} state=installed
+  with_items: 
+    - caffeine
+    - dropbox
+    - google-chrome
+    - iterm2
+    - vagrant
+    - vagrant-manager
+    - virtualbox
+
+- name: Defaults | Install xcode commandline tools
+  command: xcode-select --install
