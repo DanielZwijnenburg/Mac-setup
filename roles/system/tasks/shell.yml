@@ -23,7 +23,7 @@
   lineinfile: dest=~/.zshrc regexp="PATH" line="PATH="/usr/local/bin:$PATH"" state=present
 
 - name: Config | Configure autojump
-  lineinfile: dest=~/.zshrc regexp="/etc/autojump.sh" line="[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh" state=present
-
-# - name: Config | Source zshrc
-#   command: "source ~/.zshrc"
+  lineinfile: dest="~/.zshrc"
+              regexp="/etc/autojump.sh"
+              line="[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh"
+              state=present

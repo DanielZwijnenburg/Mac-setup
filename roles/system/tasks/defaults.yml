@@ -1,7 +1,4 @@
 ---
-#- name: Install Homebrew
-#  command: ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-
 - name: Defaults | Update Homebrew
   homebrew: update_homebrew=yes
 
@@ -19,7 +16,7 @@
 
 - name: Defaults | Install Homebrew packages
   homebrew: name={{ item }} state=upgraded
-  with_items: 
+  with_items:
       - ansible
       - autojump
       - automake
@@ -48,7 +45,7 @@
 
 - name: Defaults | Install Homebrew casks
   homebrew_cask: name={{ item }} state=installed
-  with_items: 
+  with_items:
     - caffeine
     - dropbox
     - google-chrome
@@ -56,6 +53,3 @@
     - vagrant
     - vagrant-manager
     - virtualbox
-
-- name: Defaults | Install xcode commandline tools
-  command: xcode-select --install

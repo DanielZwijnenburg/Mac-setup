@@ -11,13 +11,17 @@
 - name: Config | Git | Configure color
   command: git config --global color.ui true
 
+- name: Config | Git | Configure editor
+  command: git config --global core.editor "/usr/local/bin/vim"
+
+# DEV
+
 - name: Config | Dev | Ensure sites folder
   file: path=~/Sites
         state=directory
         recurse=true
 
-
-
+# iTerm2
 
 - name: Config | iTerm2 | Remove old plist
   file: path="~/Library/Preferences/com.googlecode.iterm2.plist"
@@ -34,6 +38,7 @@
 - name: Config | iTerm2 | Conver plist to binary
   command: "plutil -convert binary1 ~/Library/Preferences/com.googlecode.iterm2.plist"
 
+# OSX
 
 - name: Config | OSX | Disable app quarantine window
   command: "defaults write com.apple.LaunchServices LSQuarantine -bool false"
@@ -83,8 +88,8 @@
 - name: Config | OSX | Keyboard - Enable tab in modal windows
   command: "defaults write NSGlobalDomain AppleKeyboardUIMode -int 3"
 
-- name: Config | OSX | Keyboard - Map caps lock to control
-  command: 'defaults -currentHost write -g "com.apple.keyboard.modifiermapping.{}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>"'
+# - name: Config | OSX | Keyboard - Map caps lock to control
+#   command: 'defaults -currentHost write -g "com.apple.keyboard.modifiermapping.{}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>"'
 
 - name: Config | OSX | Trackpad - Right click
   command: "defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true"
@@ -115,4 +120,3 @@
 
 - name: Config | OSX | Finder - Search from current folder
   command: 'defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"'
-

@@ -14,6 +14,3 @@
 
 - name: Databases | Install PgAdmin3
   homebrew_cask: name=pgadmin3 state=installed
-
-# create postgres user
-# create postgres database
