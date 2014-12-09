@@ -6,7 +6,8 @@ I use this ansible script to fully provision my development machine.
 I tried to minimize the manual steps as much as I could. These still remain...
 
 - Install Xcode from the Apple store and accept TOS
-- ./runner.sh
+- `git clone https://github.com/DanielZwijnenburg/Mac-setup.git ~/.ansible`
+- `cd ~/.ansible && ./runner.sh`
 
 #####Installed Software
 Alot of software will be installed and configured.

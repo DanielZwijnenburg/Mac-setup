@@ -9,16 +9,18 @@ fi
 # Download and install Homebrew
 if [[ ! -x /usr/local/bin/brew ]]; then
   echo "Install homebrew"
-  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 export PATH=/usr/local/bin:$PATH
 
 if [[ ! -x /usr/local/bin/python ]]; then
+  echo "Install python"
   brew install python
 fi
 
 if [[ ! -x /usr/local/bin/ansible ]]; then
+  echo "Install ansible"
   brew install ansible
 fi
 
