@@ -5,6 +5,7 @@
 - name: Defaults | Update Homebrew taps
   homebrew_tap: name={{ item }} state=present
   with_items:
+    - caskroom/fonts
     - homebrew/dupes
     - homebrew/science
     - homebrew/versions
@@ -48,6 +49,7 @@
   with_items:
     - caffeine
     - dropbox
+    - font-inconsolata
     - google-chrome
     - iterm2
     - vagrant

@@ -46,6 +46,7 @@ Alot of software will be installed and configured.
 - caffeine
 - dropbox
 - flux
+- font-inconsolata
 - gitx
 - google-chrome
 - google-drive
