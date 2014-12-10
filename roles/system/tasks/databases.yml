@@ -5,12 +5,16 @@
 - name: Databases | Link Postgresql Launchagents
   command: ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
 
+- name: Databases | Start postgresql
+  command: launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+
 - name: Databases | Init Postgresql database
   command: initdb /usr/local/var/postgres -E utf8
   ignore_errors: true
 
-- name: install psycopg2 python module
-  pip: name=psycopg2
+- name : Databases | Create postgres user
+  command: createuser postgres
+  ignore_errors: true
 
 - name: Databases | Install PgAdmin3
   homebrew_cask: name=pgadmin3 state=installed
