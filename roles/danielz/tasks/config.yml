@@ -76,12 +76,6 @@
 - name: Config | OSX | Keyboard - Blazingly fast key repeat
   command: "defaults write NSGlobalDomain KeyRepeat -int 0"
 
-- name: Config | OSX | Trackpad - Normal scrolling. Yes _NORMAL_
-  command: "defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false"
-
-- name: Config | OSX | Trackpad - Right click
-  command: "defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true"
-
 - name: Config | OSX | Keyboard - Zoom with scroll
   command: "defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true"
 
@@ -96,6 +90,12 @@
 
 # - name: Config | OSX | Keyboard - Map caps lock to control
 #   command: 'defaults -currentHost write -g "com.apple.keyboard.modifiermapping.{}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>"'
+
+- name: Config | OSX | Trackpad - Normal scrolling. Yes _NORMAL_
+  command: "defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false"
+
+- name: Config | OSX | Trackpad - Right click
+  command: "defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true"
 
 - name: Config | OSX | AppleMail - Normal copy of e-mail addresses
   command: "defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false"
