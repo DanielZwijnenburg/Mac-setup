@@ -91,6 +91,9 @@
 - name: Config | OSX | Keyboard - Enable tab in modal windows
   command: "defaults write NSGlobalDomain AppleKeyboardUIMode -int 3"
 
+- name: Config | OSX | Keyboard - Disable auto-correct
+  command: "defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false"
+
 # - name: Config | OSX | Keyboard - Map caps lock to control
 #   command: 'defaults -currentHost write -g "com.apple.keyboard.modifiermapping.{}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>"'
 
