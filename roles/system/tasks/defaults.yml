@@ -34,6 +34,7 @@
       - gpg
       - htop-osx
       - imagemagick
+      - jmeter
       - openssl
       - qt5
       - reattach-to-user-namespace
@@ -52,6 +53,7 @@
     - font-inconsolata
     - google-chrome
     - iterm2
+    - java
     - vagrant
     - vagrant-manager
     - virtualbox
