@@ -35,7 +35,7 @@
       - htop-osx
       - imagemagick
       - openssl
-      - qt
+      - qt5
       - reattach-to-user-namespace
       - the_silver_searcher
       - tig
