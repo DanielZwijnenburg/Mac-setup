@@ -19,7 +19,7 @@
 	<key>CheckTestRelease</key>
 	<true/>
 	<key>ClosingHotkeySwitchesSpaces</key>
-	<false/>
+	<true/>
 	<key>CommandSelection</key>
 	<true/>
 	<key>Control</key>
@@ -452,7 +452,7 @@
 		</dict>
 	</dict>
 	<key>Default Bookmark Guid</key>
-	<string>E565D143-FE28-4771-B3ED-779B62C6DBBE</string>
+	<string>90848B1F-1D89-4629-B233-2EF553D17C80</string>
 	<key>DimBackgroundWindows</key>
 	<false/>
 	<key>DimInactiveSplitPanes</key>
@@ -481,8 +481,6 @@
 	<true/>
 	<key>HighlightTabLabels</key>
 	<true/>
-	<key>HotKeyBookmark</key>
-	<string>E565D143-FE28-4771-B3ED-779B62C6DBBE</string>
 	<key>HotKeyTogglesWindow</key>
 	<false/>
 	<key>Hotkey</key>
@@ -505,41 +503,16 @@
 	<false/>
 	<key>MaxVertically</key>
 	<false/>
-	<key>NSNavLastRootDirectory</key>
-	<string>~</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
-	<key>NSTableView Columns KeyBingingTable</key>
-	<array>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErATCG
-		</data>
-		<string>198</string>
-		<data>
-		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
-		hAErATGG
-		</data>
-		<string>302</string>
-	</array>
-	<key>NSTableView Hidden Columns KeyBingingTable</key>
-	<array/>
-	<key>NSTableView Sort Ordering KeyBingingTable</key>
-	<array/>
+	<key>NSWindow Frame NSFontPanel</key>
+	<string>1727 113 762 413 0 0 2560 1417 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>205 346 924 485 0 0 1920 1178 </string>
-	<key>NSWindow Frame SUStatusFrame</key>
-	<string>1088 981 384 129 0 0 2560 1418 </string>
-	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 60 1894 1118 0 0 1920 1178 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 797 490 376 0 0 1920 1178 </string>
-	<key>NSWindow Frame iTerm Window 2</key>
-	<string>317 77 490 376 0 0 2560 1418 </string>
+	<string>269 135 924 485 0 0 2560 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -719,7 +692,7 @@
 			<key>Blur</key>
 			<false/>
 			<key>Blur Radius</key>
-			<real>0.10000000149011612</real>
+			<real>2</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -781,7 +754,7 @@
 				<real>0.32436618208885193</real>
 			</dict>
 			<key>Guid</key>
-			<string>E565D143-FE28-4771-B3ED-779B62C6DBBE</string>
+			<string>90848B1F-1D89-4629-B233-2EF553D17C80</string>
 			<key>Hide After Opening</key>
 			<false/>
 			<key>Horizontal Spacing</key>
@@ -789,7 +762,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string>tmux attach -t hack || tmux -u new -s hack</string>
+			<string>tmux attach -t hack || tmux new -s hack</string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -854,13 +827,6 @@
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x7f</string>
-				</dict>
-				<key>0x9-0x40000</key>
-				<dict>
-					<key>Action</key>
-					<integer>11</integer>
-					<key>Text</key>
-					<string>9</string>
 				</dict>
 				<key>0xf700-0x220000</key>
 				<dict>
@@ -1112,7 +1078,7 @@
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
-			<integer>0</integer>
+			<integer>1000</integer>
 			<key>Scrollback With Status Bar</key>
 			<false/>
 			<key>Scrollback in Alternate Screen</key>
@@ -1250,13 +1216,13 @@
 			<key>Tags</key>
 			<array/>
 			<key>Terminal Type</key>
-			<string>xterm</string>
+			<string>xterm-256color</string>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
-			<true/>
+			<false/>
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
@@ -1264,7 +1230,7 @@
 			<key>Use Canonical Parser</key>
 			<false/>
 			<key>Use Italic Font</key>
-			<false/>
+			<true/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -1283,12 +1249,10 @@
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>0</integer>
-	<key>PMPrintingExpandedStateForPrint2</key>
-	<false/>
 	<key>PassOnControlClick</key>
 	<false/>
 	<key>PasteFromClipboard</key>
-	<false/>
+	<true/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1324,8 +1288,6 @@
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string></string>
-	<key>PromptOnClose</key>
-	<true/>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -1341,7 +1303,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-07-27T11:10:42Z</date>
+	<date>2014-12-16T13:41:41Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1351,7 +1313,7 @@
 	<key>SmartPlacement</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.34643179178237915</real>
+	<real>0.40000000596046448</real>
 	<key>SwitchTabModifier</key>
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>
@@ -1372,21 +1334,13 @@
 	<true/>
 	<key>UseLionStyleFullscreen</key>
 	<true/>
-	<key>WebKitDefaultFontSize</key>
-	<integer>11</integer>
-	<key>WebKitStandardFont</key>
-	<string>Lucida Grande</string>
 	<key>WindowNumber</key>
 	<true/>
 	<key>WindowStyle</key>
 	<integer>0</integer>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
-	<key>findIgnoreCase_iTerm</key>
-	<true/>
-	<key>findRegex_iTerm</key>
-	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20140629</string>
+	<string>2.0.0.20141103</string>
 </dict>
 </plist>
