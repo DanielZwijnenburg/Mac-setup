@@ -27,3 +27,9 @@
               regexp="/etc/autojump.sh"
               line="[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh"
               state=present
+
+- name: Config | Configure language environment
+  lineinfile: dest="~/.zshrc"
+              regexp="LANG"
+              line='export LANG="en_US.utf-8"'
+              state=present
