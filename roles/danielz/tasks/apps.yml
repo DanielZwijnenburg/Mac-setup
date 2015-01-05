@@ -1,6 +1,7 @@
 ---
 - name: Apps | Install Homebrew casks
   homebrew_cask: name={{ item }} state=installed
+  ignore_errors: true
   with_items:
     - backblaze
     - flux
@@ -8,6 +9,8 @@
     - google-drive
     - imageoptim
     - licecap
+    - macpar-deluxe
+    - mono-rme
     - name-mangler
     - onepassword
     - panic-unison
