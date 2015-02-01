@@ -189,7 +189,7 @@ noremap <Leader>o :silent execute "!open . &>/dev/null &" <bar> redraw!<CR>
 noremap <space><space> :w<CR>
 
 " Switch config
-nnoremap _ :Switch<cr>
+nnoremap - :Switch<cr>
 autocmd FileType ruby,sass,css let b:switch_custom_definitions = [
   \   {
   \     'have_no_\(\w\+\)': 'have_\1',
