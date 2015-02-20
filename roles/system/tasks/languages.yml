@@ -4,28 +4,36 @@
 
 - name: Languages | Install ruby-build
   homebrew: name=ruby-build
+  tags: ruby
 
 - name: Languages | Checks for Ruby 2.1.5
   command: /bin/sh -c "rbenv versions | grep 2.1.5"
   ignore_errors: yes
   register: ruby_is_installed
+  tags: ruby
 
 - name: Languages | Install Ruby 2.1.5
   command: rbenv install 2.1.5
   when: ruby_is_installed|failed
+  tags: ruby
 
 - name: Languages | Set Ruby 2.1.5 as global
   command: rbenv global 2.1.5
+  tags: ruby
 
 - name: Languages | Ensure oh-my-zsh presence
   ignore_errors: True
   file: path=~/.zshrc state=touch
+  tags: ruby
 
 - name: Languages | Add rbenv shim to zshrc
   lineinfile: dest=~/.zshrc regexp="rbenv" line="eval \"$(rbenv init -)\"" state=present
+  tags: ruby
 
 - name: Languages | Install Node
   homebrew: name=node
+  tags: node
 
 - name: Languages | Install Npm
   homebrew: name=npm
+  tags: node
