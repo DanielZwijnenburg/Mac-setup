@@ -55,7 +55,6 @@ Alot of software will be installed and configured.
 - iterm2
 - licecap
 - name-mangler
-- onepassword
 - panic-unison
 - pgadmin3
 - plex-home-theater
