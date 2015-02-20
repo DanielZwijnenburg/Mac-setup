@@ -23,3 +23,9 @@
 
 - name: Languages | Add rbenv shim to zshrc
   lineinfile: dest=~/.zshrc regexp="rbenv" line="eval \"$(rbenv init -)\"" state=present
+
+- name: Languages | Install Node
+  homebrew: name=node
+
+- name: Languages | Install Npm
+  homebrew: name=npm
