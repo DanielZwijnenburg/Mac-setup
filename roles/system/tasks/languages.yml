@@ -37,3 +37,15 @@
 - name: Languages | Install Npm
   homebrew: name=npm
   tags: node
+
+- name: Languages | Install Yeoman
+  npm: name=yo global=yes
+  tags: node
+
+- name: Languages | Install Bower
+  npm: name=bower global=yes
+  tags: node
+
+- name: Languages | Install Grunt-cli
+  npm: name=grunt-cli global=yes
+  tags: node
