@@ -6,6 +6,7 @@
   homebrew_tap: name={{ item }} state=present
   with_items:
     - caskroom/fonts
+    - gapple/services
     - homebrew/dupes
     - homebrew/science
     - homebrew/versions
