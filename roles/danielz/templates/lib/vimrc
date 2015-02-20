@@ -62,9 +62,9 @@ set mouse=a                     " use mouse in all modes
 
 "filetype plugin indent on       " load file type plugins + indentation
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_indent_levels = 6
-let g:solarized_termtrans = 1
+set ts=2
+set sw=2
+let g:indent_guides_start_level = 2
 
 set background=light
 colorscheme solarized
