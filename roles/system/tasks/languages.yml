@@ -1,9 +1,9 @@
 ---
 - name: Languages | Install Rbenv
-  homebrew: name=rbenv
+  homebrew: name=rbenv state=upgraded
 
 - name: Languages | Install ruby-build
-  homebrew: name=ruby-build
+  homebrew: name=ruby-build state=upgraded
   tags: ruby
 
 - name: Languages | Checks for Ruby 2.1.5
