@@ -31,11 +31,11 @@
   tags: ruby
 
 - name: Languages | Install Node
-  homebrew: name=node
+  homebrew: name=node state=upgraded
   tags: node
 
 - name: Languages | Install Npm
-  homebrew: name=npm
+  homebrew: name=npm state=upgraded
   tags: node
 
 - name: Languages | Install Yeoman
