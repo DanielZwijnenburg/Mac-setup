@@ -37,6 +37,7 @@
       - imagemagick
       - jmeter
       - openssl
+      - phantomjs
       - qt5
       - reattach-to-user-namespace
       - the_silver_searcher
