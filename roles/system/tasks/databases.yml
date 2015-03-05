@@ -27,3 +27,9 @@
 
 - name: Databases | Start MySQL
   command: launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+
+- name: Databases | Intall Redis
+  homebrew: name=redis state=upgraded
+
+- name: Databases | Link Redis Launchagents
+  command: ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
