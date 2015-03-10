@@ -20,6 +20,7 @@ Plugin 'esneider/YUNOcommit.vim'
 let g:YUNOcommit_after = 10
 Plugin 'godlygeek/tabular'
 Plugin 'kana/vim-textobj-user'
+Plugin 'kchmck/vim-coffee-script'
 Plugin 'kien/ctrlp.vim'
 Plugin 'leshill/vim-json'
 Plugin 'mortice/exuberant-ctags'
@@ -121,6 +122,7 @@ let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
 
 ""rspec
 map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>tj :Dispatch teaspoon %<CR>
 map <Leader>T :call RunNearestSpec()<CR>
 map <Leader>L :call RunLastSpec()<CR>
 map <Leader>sa :call RunAllSpecs()<CR>
@@ -159,13 +161,6 @@ let g:ctrlp_custom_ignore = {
 " let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_max_depth = 10      " Directory depth to recurse into when scanning
 let g:ctrlp_open_new_file = 't' " open files in new tab
-" let g:ctrlp_user_command = {
-"   \ 'types': {
-"     \ 1: ['.git', 'cd %s && git ls-files'],
-"     \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-"   \ },
-"   \ 'fallback': 'find %s -type f'
-"   \ }
 
 " Use ag in CtrlP for listing files. fast enough not to use caching
 " brew install silver_searcher
@@ -173,7 +168,6 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
-
 endif
 
 
@@ -185,7 +179,6 @@ map <C-n> :NERDTreeToggle<CR>
 map <leader>/ :TComment<CR>
 nnoremap <leader><leader> <c-^>
 noremap <Leader>h :noh<CR>
-noremap <Leader>db :call SendToTmux("migrate\n")<CR>
 noremap <Leader>o :silent execute "!open . &>/dev/null &" <bar> redraw!<CR>
 noremap <space><space> :w<CR>
 
@@ -246,15 +239,6 @@ function! StripWhitespace()
   call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Reload rails console
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! SendToTmux(command)
-  :w
-  let _ = VimuxOpenPane()
-  let _ = VimuxSendText(a:command)
-endfunction
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"

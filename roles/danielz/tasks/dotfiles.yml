@@ -1,17 +1,18 @@
 ---
 - name: Dotfiles | Copy dotfiles
-  template: src="lib/{{ item }}"
-            dest="~/.{{ item }}"
+  file: src="~/.ansible/roles/danielz/files/lib/{{ item }}"
+        dest="~/{{ item }}"
+        state="link"
   with_items:
-    - agignore
-    - gemrc
-    - gitconfig
-    - gitignore
-    - irbrc
-    - rspec
-    - tmux.conf
-    - vimrc
-    - zprofile
+    - .agignore
+    - .gemrc
+    - .gitconfig
+    - .gitignore
+    - .irbrc
+    - .rspec
+    - .tmux.conf
+    - .vimrc
+    - .zprofile
 
 - name: Dotfiles | Configure vim
   command: vim +PluginInstall +qall
