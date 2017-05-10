@@ -194,10 +194,7 @@ if executable("ag")
   let g:ctrlp_use_caching = 0
 endif
 
-
 "" keymaps
-nnoremap <LEADER>f :grep!<SPACE>
-nnoremap <LEADER>F :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 map <C-n> :NERDTreeToggle<CR>
 map <leader>/ :TComment<CR>
