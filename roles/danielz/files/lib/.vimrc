@@ -123,8 +123,8 @@ let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
 
 ""rspec
 map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>tj :Dispatch teaspoon %<CR>
 map <Leader>T :call RunNearestSpec()<CR>
+map <Leader>tj :Dispatch bundle exec teaspoon %<CR>
 map <Leader>L :call RunLastSpec()<CR>
 map <Leader>sa :call RunAllSpecs()<CR>
 
