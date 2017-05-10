@@ -4,7 +4,7 @@
 [credential]
   helper = osxkeychain
 [push]
-  default = current
+  default = simple
 [alias]
   co = checkout
   st = status -sb
