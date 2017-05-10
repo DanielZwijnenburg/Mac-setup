@@ -38,6 +38,13 @@ def paste
   `pbpaste`
 end
 
+def create_user(klass)
+  u = klass.new
+  u.password, u.password_confirmation = "password"
+  u.email = "daniel@danielz.nl"
+  u
+end
+
 load File.dirname(__FILE__) + '/.railsrc' if $0 == 'irb' && ENV['RAILS_ENV']
 
 # Show SQL in console
