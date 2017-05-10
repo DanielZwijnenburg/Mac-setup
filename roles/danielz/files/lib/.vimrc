@@ -123,10 +123,19 @@ let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
 
 ""rspec
 map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>T :call RunNearestSpec()<CR>
 map <Leader>tj :Dispatch bundle exec teaspoon %<CR>
+" map <Leader>T :call RunNearestSpec()<CR>
+map <Leader>T :Dispatch bundle exec m %<CR>
 map <Leader>L :call RunLastSpec()<CR>
 map <Leader>sa :call RunAllSpecs()<CR>
+
+" mini test
+function! RunMiniTest()
+  let test = expand('%') . ':' . line(".")
+
+  exec ':Dispatch bundle exec m ' . test
+endfunction
+map <Leader>T :call RunMiniTest()<cr>
 
 ""Phteven compatible mode
 map <Leader>sf :call RunCurrentSpecFile()<CR>
