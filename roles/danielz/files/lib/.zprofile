@@ -1,4 +1,4 @@
-alias migrate='rake db:migrate db:test:clone'
+alias migrate='bundle exec rake db:migrate db:test:clone'
 alias aliases='vi ~/.zprofile; source ~/.zprofile'
 alias rgm='rails g migration'
 alias gpr='git pull -r'
