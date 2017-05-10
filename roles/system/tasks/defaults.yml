@@ -29,6 +29,8 @@
       - curl
       - exiftool
       - findutils
+      - fpp
+      - gdal
       - git
       - git-extras
       - gnu-tar
