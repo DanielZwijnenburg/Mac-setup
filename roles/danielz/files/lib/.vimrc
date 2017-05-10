@@ -160,8 +160,9 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.(png|jpg|gif|DS_Store|exe|so|dll)$'
   \ }
 " let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_max_depth = 10      " Directory depth to recurse into when scanning
+let g:ctrlp_max_depth = 40      " Directory depth to recurse into when scanning
 let g:ctrlp_open_new_file = 't' " open files in new tab
+let g:ctrlp_max_files=0
 
 " Use ag in CtrlP for listing files. fast enough not to use caching
 " brew install silver_searcher
