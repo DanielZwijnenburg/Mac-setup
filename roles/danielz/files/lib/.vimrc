@@ -165,9 +165,21 @@ let g:ctrlp_open_new_file = 't' " open files in new tab
 
 " Use ag in CtrlP for listing files. fast enough not to use caching
 " brew install silver_searcher
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" if executable('ag')
+"   set grepprg=ag\ --nocolor\ --nogroup\ --hidden\ --ignore\ .git/
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden --ignore .git/ -g ""'
+"   let g:ctrlp_use_caching = 0
+" endif
+
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+  " nnoremap <LEADER>f :silent! grep! "\b<C-r><C-w>\b"<CR>:cwindow<CR>:redraw!<CR>
+  nnoremap <LEADER>f :grep!<SPACE>
+  nnoremap <LEADER>F :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+  command! -nargs=+ -complete=file_in_path -bar Ag silent grep! <args>|cwindow|redraw!
+
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden --ignore .git/ -g ""'
   let g:ctrlp_use_caching = 0
 endif
 
