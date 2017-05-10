@@ -56,6 +56,7 @@ filetype plugin indent on    " required
 set shell=/bin/sh
 syntax enable
 set encoding=utf-8
+set relativenumber              " relative line numbers
 set number                      " show line numbers
 set showcmd                     " display incomplete commands
 set showmatch                   " show matching braces
