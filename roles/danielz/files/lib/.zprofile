@@ -10,3 +10,6 @@ alias vi=vim
 export BUNDLER_EDITOR=vim
 export DISABLE_COVERAGE=true
 export EDITOR=vim
+export PGHOST=localhost
+
+alias cleanup='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
