@@ -1,58 +1,196 @@
 set nocompatible                " choose no compatibility with legacy vi
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
 let mapleader = ","
 
-call vundle#begin()
+call plug#begin('~/.vim/bundle')
+  Plug 'junegunn/vim-easy-align'
 
-Plugin 'gmarik/Vundle.vim'
+" Highlights
+  Plug 'sheerun/vim-polyglot'
+  let g:ruby_indent_access_modifier_style = 'outdent'
 
-Plugin 'AndrewRadev/switch.vim'
-Plugin 'AndrewRadev/whitespaste.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'altercation/solarized', {'rtp': 'vim-colors-solarized'}
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'benmills/vimux'
-Plugin 'chase/vim-ansible-yaml'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'esneider/YUNOcommit.vim'
-let g:YUNOcommit_after = 10
-Plugin 'godlygeek/tabular'
-Plugin 'kana/vim-textobj-user'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'kien/ctrlp.vim'
-Plugin 'leshill/vim-json'
-Plugin 'mortice/exuberant-ctags'
-Plugin 'mtscout6/vim-cjsx'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'mxw/vim-jsx'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'othree/xml.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'scrooloose/nerdtree'
-Plugin 'sickill/vim-pasta'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'vim-ruby/vim-ruby'
-let g:ruby_indent_access_modifier_style = 'outdent'
-Plugin 'vimwiki/vimwiki'
-let g:rspec_command='Dispatch ./bin/rspec {spec}'
+" Indentation
+  Plug 'nathanaelkane/vim-indent-guides'
+  let g:indent_guides_enable_on_vim_startup = 1
+  let g:indent_guides_start_level = 2
+  let g:indent_guides_auto_colors = 0
+  let g:indent_guides_indent_levels = 8
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+" colors
+  Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
+  Plug 'altercation/vim-colors-solarized'
+
+" Git: command Integration
+  Plug 'tpope/vim-fugitive'
+  nnoremap <LEADER>gb :Gblame<CR>
+  nnoremap <LEADER>gs :Gdiff<CR>
+  nnoremap <LEADER>gd :Gdiff master<CR>
+
+  Plug 'int3/vim-extradite'
+  nnoremap <LEADER>ge :Extradite<CR>
+
+  Plug 'airblade/vim-gitgutter'
+  let g:gitgutter_sign_column_always = 1
+
+" Ruby / Rails
+  Plug 'tpope/vim-rails', { 'for': 'ruby' }
+    let g:rails_projections = {
+    \ "spec/factories/*.rb": {
+    \   "command":   "factory",
+    \   "affinity":  "collection",
+    \   "alternate": "app/models/%i.rb",
+    \   "related":   "db/schema.rb#%s",
+    \   "test":      ["unit/models/%i_test.rb", "spec/models/%i_spec.rb"],
+    \   "template":  "FactoryGirl.define do\n  factory :%i do\n  end\nend",
+    \   "keywords":  "factory sequence"
+    \ }}
+
+  Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+  Plug 'danchoi/ri.vim', {'for': 'ruby'}  " documentation
+    let g:ri_no_mappings=1
+    nnoremap  <LEADER>rd :call ri#OpenSearchPrompt(1)<cr> " vertical split
+    nnoremap  <LEADER>rc :call ri#LookupNameUnderCursor()<cr> " keyword lookup
+
+  Plug 'GutenYe/gem.vim', { 'for': 'ruby' }
+  Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
+    let g:rspec_command='Dispatch ./bin/rspec {spec}'
+
+    map <Leader>t :call RunCurrentSpecFile()<CR>
+    map <Leader>tj :Dispatch bundle exec teaspoon %<CR>
+    " map <Leader>T :call RunNearestSpec()<CR>
+    map <Leader>T :Dispatch bundle exec m %<CR>
+    map <Leader>L :call RunLastSpec()<CR>
+    map <Leader>sa :call RunAllSpecs()<CR>
+
+    " mini test
+    function! RunMiniTest()
+      let test = expand('%') . ':' . line(".")
+
+      exec ':Dispatch bundle exec m ' . test
+    endfunction
+    map <Leader>T :call RunMiniTest()<cr>
+
+  Plug 'tpope/vim-rbenv', {'for': 'ruby'}
+  Plug 'kana/vim-textobj-user'
+  Plug 'nelstrom/vim-textobj-rubyblock'
+  Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby'}
+
+" Utils
+" Util - taglist
+"  Plug 'taglist.vim'
+
+  Plug 'AndrewRadev/switch.vim'
+    nnoremap - :Switch<cr>
+    autocmd FileType gitrebase let b:switch_custom_definitions = [
+      \   ['pick', 'reword', 'edit', 'squash', 'fixup'],
+      \ ]
+
+" Util - Searching
+  Plug '/usr/local/opt/the_silver_searcher/'
+  Plug '/usr/local/opt/fzf/'
+  Plug 'junegunn/fzf.vim'
+    set grepprg=ag\ --vimgrep\ --hidden\ --ignore\ .git/
+
+    let g:fzf_buffers_jump = 1
+    let g:fzf_commits_log_options = '--color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+    let g:fzf_history_dir = '~/.vim/fzf/'
+
+    autocmd VimEnter * command! Colors
+      \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
+
+    nnoremap <C-G>c :Commits<CR>
+    nnoremap <C-G>b :BCommits<CR>
+    nnoremap <C-G>f :GFiles?<CR>
+    nnoremap <C-F>c :Colors<CR>
+    nnoremap <C-F>t :Tags<CR>
+    nnoremap <C-P> :Files<CR>
+
+    nmap <leader><tab> <plug>(fzf-maps-n)
+    xmap <leader><tab> <plug>(fzf-maps-x)
+    omap <leader><tab> <plug>(fzf-maps-o)
+
+    imap <c-x><c-k> <plug>(fzf-complete-word)
+    imap <c-x><c-f> <plug>(fzf-complete-path)
+    imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+    imap <c-x><c-l> <plug>(fzf-complete-line)
+    imap <c-x><c-b> <plug>(fzf-complete-buffer-line)
+
+" Util - Linting
+  Plug 'w0rp/ale'
+    let g:ale_lint_on_enter = 0
+    let g:ale_sign_column_always = 1
+    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+    let g:ale_echo_msg_format = '%linter%: %s'
+    let g:ale_linters = {
+    \   'javascript': ['eslint', 'flow'],
+    \}
+
+" Util - Commenting
+  Plug 'tomtom/tcomment_vim'
+    map <leader>/ :TComment<CR>
+
+" Util - Asynchronous tasks
+  Plug 'tpope/vim-dispatch'
+
+" Util - Block completion
+  Plug 'tpope/vim-endwise'
+
+" Util - quoting/parenthesizing Enhancements
+  Plug 'tpope/vim-surround'
+
+  Plug 'tpope/vim-unimpaired'
+  "
+" Util - make things repeatable with '.'
+  Plug 'tpope/vim-repeat'
+
+" Util - vertically aligning things
+  Plug 'godlygeek/tabular'
+
+" Util - Toggle inline/multiline
+  Plug 'AndrewRadev/splitjoin.vim'
+    let g:splitjoin_split_mapping = '<LEADER>sm'
+    let g:splitjoin_join_mapping = '<LEADER>jm'
+  Plug 'jgdavey/vim-blockle'
+    let g:blockle_mapping = '<LEADER>bl'
+
+" Util - Sensible defaults
+  Plug 'tpope/vim-sensible'
+
+" Util - Y U No Commit?
+  Plug 'esneider/YUNOcommit.vim'
+    let g:YUNOcommit_after = 10
+
+  Plug 'vim-scripts/Improved-AnsiEsc'
+
+" Util - Tmux
+  Plug 'christoomey/vim-tmux-navigator'
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-l> <C-w>l
+  Plug 'benmills/vimux'
+
+" Util - Whitespaste
+  Plug 'AndrewRadev/whitespaste.vim'
+  Plug 'sickill/vim-pasta'
+    let g:pasta_enabled_filetypes = []
+    let g:whitespaste_paste_before_command = "normal \<Plug>BeforePasta"
+    let g:whitespaste_paste_after_command  = "normal \<Plug>AfterPasta"
+    let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
+
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+
+" Util - NerdTree
+  Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " enable vi to close when NERDTree is the only open tab
+    map <C-n> :NERDTreeToggle<CR>
+
+" Util - CtrlP remove?
+  Plug 'kien/ctrlp.vim'
+
+call plug#end()
+filetype plugin indent on " Turn on _after_ loading all Plugins
 
 set shell=/bin/sh
 syntax enable
@@ -62,47 +200,43 @@ set number                      " show line numbers
 set showcmd                     " display incomplete commands
 set showmatch                   " show matching braces
 set mouse=a                     " use mouse in all modes
-
-"filetype plugin indent on       " load file type plugins + indentation
-let g:indent_guides_enable_on_vim_startup = 1
 set ts=2
 set sw=2
-let g:indent_guides_start_level = 2
-
-set background=light
-colorscheme solarized
-let g:solarized_termcolors=256
 set clipboard=unnamed          " Yanks go on clipboard instead.
-" Splits
 set splitbelow
 set splitright
-set lazyredraw
-
-"" Whitespace
-set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
+set tabstop=2 
+set shiftwidth=2                " a tab is two spaces (or set this to 4)
 set softtabstop=2
 set expandtab                   " use spaces, not tabs (optional)
+set smarttab                    " deindent with <BS>, start at indent level
 set backspace=indent,eol,start  " backspace through everything in insert mode
 set ruler                       " show the cursor position all the time
-set autoindent
 set nofoldenable                " Say no to code folding...
 set antialias
-set shiftround
-" set cursorline
 set linespace=0
-
-"" Searching
-set hlsearch                    " highlight matches
-set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
-set smartcase                   " ... unless they contain at least one capital letter
-
-"" Aliased commands
-
-"" tmp and backup folders
 set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/tmp
+set history=500                 " keep 500 lines of command line history
+set autoread                    " reload files only changed outside vim from disk
+set autowrite                   " write before :next/:cnext
+set ttyfast                     " you got a fast terminal
+set hlsearch                    " highlight matches
+set incsearch                   " incremental searching
+set lazyredraw                  " prevent redraws while executing
+set smartcase                   " ... unless they contain at least one capital letter
+set scrolloff=5                 " don't show search results as the first line
+set smartindent
+set autoindent                  " always set autoindenting on
+set shiftround                  " When at 3 spaces and I hit >>, go to 4, not 5.
+set wildmenu                    " Better? completion on command line
+set wildmode=list:longest,full  " Completion settings
+set tags+=.git/tags-includes    " Search for ctag file in .git/
+set wildignore+=tags            " Don't complete from project code ctag file
+set wildignore+=tags-includes   " Don't complete from includes code ctag file
+set list                        " Create a list & make invisible chars visible
 
 if exists("+undofile")
   " undofile - This allows you to use undos after exiting and restarting
@@ -117,42 +251,26 @@ if exists("+undofile")
   set undofile
 endif
 
-let g:pasta_enabled_filetypes = []
-let g:whitespaste_paste_before_command = "normal \<Plug>BeforePasta"
-let g:whitespaste_paste_after_command  = "normal \<Plug>AfterPasta"
-let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
+" colors
+colorscheme solarized
+set background=light
+let g:solarized_termcolors=256
 
-""rspec
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>tj :Dispatch bundle exec teaspoon %<CR>
-" map <Leader>T :call RunNearestSpec()<CR>
-map <Leader>T :Dispatch bundle exec m %<CR>
-map <Leader>L :call RunLastSpec()<CR>
-map <Leader>sa :call RunAllSpecs()<CR>
+" improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold 
 
-" mini test
-function! RunMiniTest()
-  let test = expand('%') . ':' . line(".")
+" Disable Ex mode
+noremap Q <NOP>
+command! Q q "Bind :Q to :q"
+command! Qall qall "Bind :Qall to :qall"
 
-  exec ':Dispatch bundle exec m ' . test
-endfunction
-map <Leader>T :call RunMiniTest()<cr>
-
-""Phteven compatible mode
-map <Leader>sf :call RunCurrentSpecFile()<CR>
-map <Leader>sn :call RunNearestSpec()<CR>
-map <Leader>sl :call RunLastSpec()<CR>
-map <Leader>sa :call RunAllSpecs()<CR>
-
-"" ctags
-set tags=./tags;
-map <Leader>rt :!/usr/local/bin/ctags --language-force=ruby --exclude=.git --exclude=.md --exclude=log -R * `bundle show --paths`
-
-"" nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " enable vi to close when NERDTree is the only open tab
-
-" Tab completion
-let g:SuperTabDefaultCompletionType = "<c-n>"
+"" keymaps
+vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+nnoremap <leader><leader> <c-^>
+noremap <Leader>h :noh<CR>
+noremap <Leader>o :silent execute "!open . &>/dev/null &" <bar> redraw!<CR>
+noremap <space><space> :w<CR>
+nnoremap <Leader>pry orequire 'pry'; binding.pry # DEBUG<ESC>
 
 " ====================
 " CtrlP options
@@ -174,14 +292,6 @@ let g:ctrlp_max_depth = 40      " Directory depth to recurse into when scanning
 let g:ctrlp_open_new_file = 't' " open files in new tab
 let g:ctrlp_max_files=0
 
-" Use ag in CtrlP for listing files. fast enough not to use caching
-" brew install silver_searcher
-" if executable('ag')
-"   set grepprg=ag\ --nocolor\ --nogroup\ --hidden\ --ignore\ .git/
-"   let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden --ignore .git/ -g ""'
-"   let g:ctrlp_use_caching = 0
-" endif
-
 if executable("ag")
   set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
   set grepformat=%f:%l:%c:%m,%f:%l:%m
@@ -193,50 +303,6 @@ if executable("ag")
   let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden --ignore .git/ -g ""'
   let g:ctrlp_use_caching = 0
 endif
-
-"" keymaps
-vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
-map <C-n> :NERDTreeToggle<CR>
-map <leader>/ :TComment<CR>
-nnoremap <leader><leader> <c-^>
-noremap <Leader>h :noh<CR>
-noremap <Leader>o :silent execute "!open . &>/dev/null &" <bar> redraw!<CR>
-noremap <space><space> :w<CR>
-
-" Switch config
-nnoremap - :Switch<cr>
-autocmd FileType ruby,sass,css let b:switch_custom_definitions = [
-  \   {
-  \     'have_no_\(\w\+\)': 'have_\1',
-  \     'have_\(\w\+\)': 'have_no_\1',
-  \   },
-  \   ['dark', 'light'],
-  \   ['high', 'low'],
-  \   ['foo', 'bar', 'baz'],
-  \   ['left', 'right'],
-  \   ['rock', 'paper', 'scissors', 'lizard', 'Spock'],
-  \ ]
-autocmd FileType gitrebase let b:switch_custom_definitions = [
-  \   ['pick', 'reword', 'edit', 'squash', 'fixup'],
-  \ ]
-
-" easier navigation between split windows
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-
-" Disable Ex mode
-noremap Q <NOP>
-
-" pryaiai <o/
-nnoremap <Leader>pry orequire 'pry'; binding.pry # DEBUG<ESC>
-
-""improve autocomplete menu color
-highlight Pmenu ctermbg=238 gui=bold
-
-" Json formatting
-map <leader>fj  <Esc>:%!python -m json.tool<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE (thanks Gary Bernhardt)
@@ -269,5 +335,3 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
-command! Q q "Bind :Q to :q"
-command! Qall qall "Bind :Qall to :qall"
