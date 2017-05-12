@@ -58,7 +58,7 @@ call plug#begin('~/.vim/bundle')
     map <Leader>t :call RunCurrentSpecFile()<CR>
     map <Leader>tj :Dispatch bundle exec teaspoon %<CR>
     " map <Leader>T :call RunNearestSpec()<CR>
-    map <Leader>T :Dispatch bundle exec m %<CR>
+    map <Leader>T :Dispatch bundle exec bin/m %<CR>
     map <Leader>L :call RunLastSpec()<CR>
     map <Leader>sa :call RunAllSpecs()<CR>
 
