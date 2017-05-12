@@ -20,7 +20,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
   Plug 'altercation/vim-colors-solarized'
 
-" Git: command Integration
+" Git - command Integration
   Plug 'tpope/vim-fugitive'
   nnoremap <LEADER>gb :Gblame<CR>
   nnoremap <LEADER>gs :Gdiff<CR>
@@ -79,11 +79,11 @@ call plug#begin('~/.vim/bundle')
 " Util - taglist
 "  Plug 'taglist.vim'
 
-  Plug 'AndrewRadev/switch.vim'
-    nnoremap - :Switch<cr>
-    autocmd FileType gitrebase let b:switch_custom_definitions = [
-      \   ['pick', 'reword', 'edit', 'squash', 'fixup'],
-      \ ]
+Plug 'AndrewRadev/switch.vim'
+  nnoremap - :Switch<cr>
+  autocmd FileType gitrebase let b:switch_custom_definitions = [
+    \   ['pick', 'reword', 'edit', 'squash', 'fixup'],
+    \ ]
 
 " Util - Searching
   Plug '/usr/local/opt/the_silver_searcher/'
@@ -205,7 +205,7 @@ set sw=2
 set clipboard=unnamed          " Yanks go on clipboard instead.
 set splitbelow
 set splitright
-set tabstop=2 
+set tabstop=2
 set shiftwidth=2                " a tab is two spaces (or set this to 4)
 set softtabstop=2
 set expandtab                   " use spaces, not tabs (optional)
@@ -257,7 +257,7 @@ set background=light
 let g:solarized_termcolors=256
 
 " improve autocomplete menu color
-highlight Pmenu ctermbg=238 gui=bold 
+highlight Pmenu ctermbg=238 gui=bold
 
 " Disable Ex mode
 noremap Q <NOP>
