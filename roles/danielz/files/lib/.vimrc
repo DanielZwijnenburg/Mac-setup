@@ -52,23 +52,16 @@ call plug#begin('~/.vim/bundle')
     nnoremap  <LEADER>rc :call ri#LookupNameUnderCursor()<cr> " keyword lookup
 
   Plug 'GutenYe/gem.vim', { 'for': 'ruby' }
-  Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
-    let g:rspec_command='Dispatch ./bin/rspec {spec}'
 
-    map <Leader>t :call RunCurrentSpecFile()<CR>
-    map <Leader>tj :Dispatch bundle exec teaspoon %<CR>
-    " map <Leader>T :call RunNearestSpec()<CR>
-    map <Leader>T :Dispatch bundle exec bin/m %<CR>
-    map <Leader>L :call RunLastSpec()<CR>
-    map <Leader>sa :call RunAllSpecs()<CR>
+  Plug 'janko-m/vim-test'
+    nmap <silent> <leader>T :TestNearest<CR>
+    nmap <silent> <leader>t :TestFile<CR>
+    nmap <silent> <leader>a :TestSuite<CR>
+    nmap <silent> <leader>L :TestLast<CR>
+    nmap <silent> <leader>g :TestVisit<CR>
 
-    " mini test
-    function! RunMiniTest()
-      let test = expand('%') . ':' . line(".")
-
-      exec ':Dispatch bundle exec m ' . test
-    endfunction
-    map <Leader>T :call RunMiniTest()<cr>
+    let test#strategy = "dispatch"
+    let test#filename_modifier = ":p"
 
   Plug 'tpope/vim-rbenv', {'for': 'ruby'}
   Plug 'kana/vim-textobj-user'
