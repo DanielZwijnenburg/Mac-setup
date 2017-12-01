@@ -1,4 +1,6 @@
 set nocompatible                " choose no compatibility with legacy vi
+set vb
+scriptencoding utf-8
 filetype off
 let mapleader = ","
 
@@ -32,6 +34,7 @@ call plug#begin('~/.vim/bundle')
   nnoremap <LEADER>ge :Extradite<CR>
 
   Plug 'airblade/vim-gitgutter'
+  set signcolumn=yes
 
 " Ruby / Rails
   Plug 'tpope/vim-rails', { 'for': 'ruby' }
@@ -185,14 +188,16 @@ Plug 'AndrewRadev/switch.vim'
     let g:whitespaste_paste_after_command  = "normal \<Plug>AfterPasta"
     let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
 
-
 " Util - NerdTree
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " enable vi to close when NERDTree is the only open tab
+    " enable vi to close when NERDTree is the only open tab
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
     map <C-n> :NERDTreeToggle<CR>
 
 call plug#end()
 filetype plugin indent on " Turn on _after_ loading all Plugins
+
+set viminfo='10,f1,<100,:20,@20,/20,h,n~/.vim/.viminfo
 
 set shell=/bin/sh
 syntax enable
