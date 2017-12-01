@@ -72,13 +72,18 @@ Plug 'AndrewRadev/switch.vim'
 
 " Util - Searching
   Plug '/usr/local/opt/the_silver_searcher/'
-  Plug '/usr/local/opt/fzf/'
+
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug '/usr/local/opt/fzf/'
     set grepprg=ag\ --vimgrep\ --hidden\ --ignore\ .git/
+    let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
     let g:fzf_buffers_jump = 1
     let g:fzf_commits_log_options = '--color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
     let g:fzf_history_dir = '~/.vim/fzf/'
+
+    nnoremap <silent> <C-p> :FZF<CR>
 
     autocmd VimEnter * command! Colors
       \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
@@ -88,7 +93,7 @@ Plug 'AndrewRadev/switch.vim'
     nnoremap <C-G>f :GFiles?<CR>
     nnoremap <C-F>c :Colors<CR>
     nnoremap <C-F>t :Tags<CR>
-    nnoremap <C-P> :Files<CR>
+    nnoremap <silent> <C-p> :FZF<CR>
 
     nmap <leader><tab> <plug>(fzf-maps-n)
     xmap <leader><tab> <plug>(fzf-maps-x)
