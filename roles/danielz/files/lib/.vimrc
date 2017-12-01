@@ -4,6 +4,8 @@ let mapleader = ","
 
 call plug#begin('~/.vim/bundle')
   Plug 'junegunn/vim-easy-align'
+    xmap ga <Plug>(EasyAlign)
+    nmap ga <Plug>(EasyAlign)
 
 " Highlights
   Plug 'sheerun/vim-polyglot'
