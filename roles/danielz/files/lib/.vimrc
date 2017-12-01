@@ -30,7 +30,6 @@ call plug#begin('~/.vim/bundle')
   nnoremap <LEADER>ge :Extradite<CR>
 
   Plug 'airblade/vim-gitgutter'
-  let g:gitgutter_sign_column_always = 1
 
 " Ruby / Rails
   Plug 'tpope/vim-rails', { 'for': 'ruby' }
@@ -51,8 +50,6 @@ call plug#begin('~/.vim/bundle')
     nnoremap  <LEADER>rd :call ri#OpenSearchPrompt(1)<cr> " vertical split
     nnoremap  <LEADER>rc :call ri#LookupNameUnderCursor()<cr> " keyword lookup
 
-  Plug 'GutenYe/gem.vim', { 'for': 'ruby' }
-
   Plug 'janko-m/vim-test'
     nmap <silent> <leader>T :TestNearest<CR>
     nmap <silent> <leader>t :TestFile<CR>
@@ -66,11 +63,6 @@ call plug#begin('~/.vim/bundle')
   Plug 'tpope/vim-rbenv', {'for': 'ruby'}
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
-  Plug 'ecomba/vim-ruby-refactoring', { 'for': 'ruby'}
-
-" Utils
-" Util - taglist
-"  Plug 'taglist.vim'
 
 Plug 'AndrewRadev/switch.vim'
   nnoremap - :Switch<cr>
@@ -149,10 +141,6 @@ Plug 'AndrewRadev/switch.vim'
 " Util - Sensible defaults
   Plug 'tpope/vim-sensible'
 
-" Util - Y U No Commit?
-  Plug 'esneider/YUNOcommit.vim'
-    let g:YUNOcommit_after = 10
-
   Plug 'vim-scripts/Improved-AnsiEsc'
 
 " Util - Tmux
@@ -161,7 +149,6 @@ Plug 'AndrewRadev/switch.vim'
     nnoremap <C-k> <C-w>k
     nnoremap <C-h> <C-w>h
     nnoremap <C-l> <C-w>l
-  Plug 'benmills/vimux'
 
 " Util - Whitespaste
   Plug 'AndrewRadev/whitespaste.vim'
@@ -171,16 +158,11 @@ Plug 'AndrewRadev/switch.vim'
     let g:whitespaste_paste_after_command  = "normal \<Plug>AfterPasta"
     let g:whitespaste_paste_visual_command = "normal gv\<Plug>VisualPasta"
 
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
 
 " Util - NerdTree
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " enable vi to close when NERDTree is the only open tab
     map <C-n> :NERDTreeToggle<CR>
-
-" Util - CtrlP remove?
-  Plug 'kien/ctrlp.vim'
 
 call plug#end()
 filetype plugin indent on " Turn on _after_ loading all Plugins
@@ -188,7 +170,6 @@ filetype plugin indent on " Turn on _after_ loading all Plugins
 set shell=/bin/sh
 syntax enable
 set encoding=utf-8
-set relativenumber              " relative line numbers
 set number                      " show line numbers
 set showcmd                     " display incomplete commands
 set showmatch                   " show matching braces
@@ -265,26 +246,6 @@ noremap <Leader>o :silent execute "!open . &>/dev/null &" <bar> redraw!<CR>
 noremap <space><space> :w<CR>
 nnoremap <Leader>pry orequire 'pry'; binding.pry # DEBUG<ESC>
 
-" ====================
-" CtrlP options
-" :help ctrlp-commands
-" ====================
-set wildignore+=*.so,*.swp,*.zip
-
-nmap <LEADER>rf :CtrlPClearCache<CR>
-
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_switch_buffer = 2
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$|^vendor$|log|^coverage$|^tmp$|^rdoc$|',
-  \ 'file': '\.(png|jpg|gif|DS_Store|exe|so|dll)$'
-  \ }
-" let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_max_depth = 40      " Directory depth to recurse into when scanning
-let g:ctrlp_open_new_file = 't' " open files in new tab
-let g:ctrlp_max_files=0
-
 if executable("ag")
   set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
   set grepformat=%f:%l:%c:%m,%f:%l:%m
@@ -292,9 +253,6 @@ if executable("ag")
   nnoremap <LEADER>f :grep!<SPACE>
   nnoremap <LEADER>F :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
   command! -nargs=+ -complete=file_in_path -bar Ag silent grep! <args>|cwindow|redraw!
-
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden --ignore .git/ -g ""'
-  let g:ctrlp_use_caching = 0
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -327,4 +285,3 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
-
