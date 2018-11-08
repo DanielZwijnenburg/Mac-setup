@@ -65,6 +65,8 @@ call plug#begin('~/.vim/bundle')
     let test#strategy = "dispatch"
     let test#filename_modifier = ":p"
 
+    let test#elixir#exunit#executable = 'iex -S mix test --trace --include wallaby'
+
   Plug 'tpope/vim-rbenv', {'for': 'ruby'}
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
