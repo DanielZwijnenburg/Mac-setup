@@ -196,6 +196,9 @@ Plug 'AndrewRadev/switch.vim'
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif 
     map <C-n> :NERDTreeToggle<CR>
 
+" Python
+  Plug 'vim-scripts/indentpython.vim'
+
 call plug#end()
 filetype plugin indent on " Turn on _after_ loading all Plugins
 
