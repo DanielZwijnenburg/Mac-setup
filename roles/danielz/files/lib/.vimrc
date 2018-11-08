@@ -44,7 +44,7 @@ call plug#begin('~/.vim/bundle')
     \   "affinity":  "collection",
     \   "alternate": "app/models/%i.rb",
     \   "related":   "db/schema.rb#%s",
-    \   "test":      ["unit/models/%i_test.rb", "spec/models/%i_spec.rb"],
+    \   "test":      ["spec/models/%i_spec.rb", "unit/models/%i_test.rb"],
     \   "template":  "FactoryGirl.define do\n  factory :%i do\n  end\nend",
     \   "keywords":  "factory sequence"
     \ }}
